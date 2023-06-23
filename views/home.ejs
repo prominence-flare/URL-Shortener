@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Shortener</title>
+</head>
+<body bgcolor="aqua">
+    <center><h1>URL Shortener</h1></center>
+   
+     
+    <div><form method="POST" action="/url">
+        <label><b>Enter Your URL you want to Shorten</b></label>
+        <input type="text" name="url" placeholder="https://enteryoururl.com">
+        <button type="submit">Shrink</button>
+    </form></div>
+    
+    <% if (locals.id) { %>
+        <p>Shrinked URL  : http://localhost:3000/url/<%=id%></p>
+     
+    <% } %>
+    <center>
+
+    
+   </center>
+    <div>
+
+        <% if (locals.urls) { %>
+        
+        <div>
+        <hr>
+        <center>
+        <input type="text" id="enter1" onkeyup="search1()" placeholder="Index">
+        <input type="text" id="enter2" onkeyup="search2()" placeholder="ShortID">
+        <input type="text" id="enter3" onkeyup="search3()" placeholder="URL">
+        </center>
+        <center>
+         <table border="10" id="myTabel">
+            <thead>
+                <th>S No.</th>
+                <th>Short ID</th>
+                <th>Original URL</th>
+                <th>clicks</th>
+            </thead>
+            <tbody>
+                
+                <% urls.forEach((url,index) => { %>
+                    <tr>
+                    <td><%= index+1 %></td>
+                    <td><%= url.short %></td>
+                    <td><%= url.originalUrl %></td>
+                    <td><%= url.history.length %></td>
+                </tr>                
+                <% }) %>
+                
+
+            </tbody>
+         </table>
+        </center>
+        <% } %>
+    </div>
+
+    <script type="application/javascript">
+        function search1(){
+            let input,td1,td2,td3,tr,i,table,value,filter;
+            input=document.getElementById("enter1");
+            filter= input.value;
+            table= document.getElementById("myTabel");
+            tr=document.getElementsByTagName("tr");
+
+            for(let i=0; i<tr.length;i++){
+                td1=tr[i].getElementsByTagName("td")[0];
+                
+                if(td1){
+                    value=td1.textContent || td1.innerText;
+                    if(value.indexOf(filter)>-1){
+                        tr[i].style.display="";
+                    }
+                    else{
+                        tr[i].style.display="none";
+                    }
+                }
+                
+            }
+        }
+
+        function search2(){
+            let input,td1,td2,td3,tr,i,table,value,filter;
+            input=document.getElementById("enter2");
+            filter= input.value;
+            table= document.getElementById("myTabel");
+            tr=document.getElementsByTagName("tr");
+
+            for(let i=0; i<tr.length;i++){
+                td1=tr[i].getElementsByTagName("td")[1];
+                
+                if(td1){
+                    value=td1.textContent || td1.innerText;
+                    if(value.indexOf(filter)>-1){
+                        tr[i].style.display="";
+                    }
+                    else{
+                        tr[i].style.display="none";
+                    }
+                }
+                
+            }
+        }
+
+        function search3(){
+            let input,td1,td2,td3,tr,i,table,value,filter;
+            input=document.getElementById("enter3");
+            filter= input.value;
+            table= document.getElementById("myTabel");
+            tr=document.getElementsByTagName("tr");
+
+            for(let i=0; i<tr.length;i++){
+                td1=tr[i].getElementsByTagName("td")[2];
+                
+                if(td1){
+                    value=td1.textContent || td1.innerText;
+                    if(value.indexOf(filter)>-1){
+                        tr[i].style.display="";
+                    }
+                    else{
+                        tr[i].style.display="none";
+                    }
+                }
+                
+            }
+        }
+
+    
+        
+
+
+        
+    </script>
+
+    
+</body>
+</html>

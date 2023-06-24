@@ -38,7 +38,7 @@
          <table border="10" id="myTabel">
             <thead>
                 <th>S No.</th>
-                <th>Short ID</th>
+                <th>Shrinked Url</th>
                 <th>Original URL</th>
                 <th>clicks</th>
             </thead>
@@ -47,7 +47,7 @@
                 <% urls.forEach((url,index) => { %>
                     <tr>
                     <td><%= index+1 %></td>
-                    <td><%= url.short %></td>
+                    <td>http://localhost:3000/url/<%= url.short %></td>
                     <td><%= url.originalUrl %></td>
                     <td><%= url.history.length %></td>
                 </tr>                
